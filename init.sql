@@ -1,0 +1,25 @@
+-- Собственность
+CREATE TABLE Estate (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    City TEXT,
+    Street TEXT,
+    Building TEXT,
+    Apartment INTEGER,
+    Hot_water INTEGER,
+    Cold_water INTEGER,
+    Estate_space INTEGER NOT NULL,
+    Number_of_registered_people INTEGER NOT NULL
+);
+-- Услуга
+CREATE TABLE Service(
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT UNIQUE NOT NULL,
+    Formula TEXT NOT NULL
+);
+-- Контракт
+CREATE TABLE Provision (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Service_ID INTEGER REFERENCES Service(ID) ON UPDATE CASCADE ON DELETE SET NULL,
+    Estate_ID INTEGER REFERENCES Estate(ID) ON UPDATE CASCADE ON DELETE SET NULL,
+    Cost INTEGER
+);

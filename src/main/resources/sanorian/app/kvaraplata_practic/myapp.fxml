@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sanorian.app.kvaraplata_practic.HelloController">
+  <children>
+    <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="602.0" prefWidth="204.0" VBox.vgrow="ALWAYS">
+      <items>
+        <AnchorPane prefHeight="549.0" prefWidth="365.0">
+               <children>
+                  <TextField layoutX="13.0" layoutY="41.0" prefHeight="26.0" prefWidth="195.0" fx:id="cityName" promptText="Город"/>
+                  <Button layoutX="14.0" layoutY="181.0" mnemonicParsing="false" text="Поиск" onAction="#searchProvision"/>
+                  <Label layoutX="13.0" layoutY="14.0" prefHeight="18.0" prefWidth="108.0" text="Поиск по адресу"/>
+                  <TextField layoutX="14.0" layoutY="76.0" prefHeight="26.0" prefWidth="195.0" fx:id="streetName" promptText="Улица"/>
+                  <TextField layoutX="13.0" layoutY="111.0" prefHeight="26.0" prefWidth="195.0" fx:id="buildingNumber" promptText="Здание"/>
+                  <TextField layoutX="14.0" layoutY="146.0" prefHeight="26.0" prefWidth="195.0" fx:id="apartmentNumber" promptText="Квартира"/>
+                  <Button layoutX="14.0" layoutY="391.0" mnemonicParsing="false" text="Добавить недвижимость" onAction="#addEstate"/>
+                  <Button layoutX="14.0" layoutY="436.0" mnemonicParsing="false" text="Добавить услугу" onAction="#addService"/>
+                  <Button layoutX="14.0" layoutY="475.0" mnemonicParsing="false" text="Добавить контракт" onAction="#addProvision"/>
+               </children>
+        </AnchorPane>
+        <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
+          <content>
+            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="549.0" prefWidth="559.0">
+                     <children>
+                        <TableView layoutY="-1.0" prefHeight="598.0" prefWidth="670.0" fx:id="table">
+                          <columns>
+
+                          </columns>
+                        </TableView>
+                     </children>
+            </AnchorPane>
+          </content>
+        </ScrollPane>
+      </items>
+    </SplitPane>
+  </children>
+</VBox>
