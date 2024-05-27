@@ -15,6 +15,11 @@ public class AddServiceController {
     TextArea formula;
     @FXML
     protected void addService(){
+        if (name.getText().equals("") || formula.getText().equals("")){
+            Alert alert = new Alert(Alert.AlertType.NONE, "Все поля должны быть заполнены", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
         ArrayList<Service> services = DataBaseConnect.getServices();
         ArrayList<String> serviceNames = new ArrayList<>();
         assert services != null;
