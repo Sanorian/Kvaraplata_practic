@@ -17,6 +17,7 @@ public class AddServiceController {
     protected void addService(){
         if (name.getText().equals("") || formula.getText().equals("")){
             Alert alert = new Alert(Alert.AlertType.NONE, "Все поля должны быть заполнены", ButtonType.OK);
+            alert.setTitle("Недозаполненность");
             alert.showAndWait();
             return;
         }
@@ -28,6 +29,7 @@ public class AddServiceController {
         });
         if (serviceNames.contains(name.getText())){
             Alert alert = new Alert(Alert.AlertType.NONE, "Название услуги должно быть уникально. Исправьте", ButtonType.OK);
+            alert.setTitle("Неуникальность");
             alert.showAndWait();
             return;
         }

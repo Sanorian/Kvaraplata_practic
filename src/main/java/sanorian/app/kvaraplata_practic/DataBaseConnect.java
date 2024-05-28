@@ -129,4 +129,16 @@ public class DataBaseConnect {
             return null;
         }
     }
+    static public void deleteProvision(Integer id){
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection("jdbc:sqlite:data.db");
+            statement = connection.createStatement();
+            statement.executeQuery("DELETE FROM Provision WHERE id="+id+";");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

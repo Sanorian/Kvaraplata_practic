@@ -47,6 +47,7 @@ public class AddProvisionController {
         });
         if (estateID==null || selectedService[0]==null){
             Alert alert = new Alert(Alert.AlertType.NONE, "Вы должны выбрать и недвижимость, и услугу", ButtonType.OK);
+            alert.setTitle("Недовыбор");
             alert.showAndWait();
             return;
         }
@@ -60,6 +61,7 @@ public class AddProvisionController {
         Estate estate = DataBaseConnect.getEstateByAddress(city.getText(), street.getText(), building.getText(), apartment.getText());
         if (estate==null){
             Alert alert = new Alert(Alert.AlertType.NONE, "Такая недвижимость отсутствует", ButtonType.OK);
+            alert.setTitle("Отсутствие недвижимость");
             alert.showAndWait();
             return;
         }

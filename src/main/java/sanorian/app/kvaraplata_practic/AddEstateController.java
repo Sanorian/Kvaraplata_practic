@@ -26,6 +26,7 @@ public class AddEstateController {
     protected void addEstate(){
         if (city.getText().equals("") || street.getText().equals("") || building.getText().equals("") || apartment.getText().equals("") || coldWater.getText().equals("") || hotWater.getText().equals("") || space.getText().equals("") || peopleCount.getText().equals("")){
             Alert alert = new Alert(Alert.AlertType.NONE, "Надо заполнить все поля", ButtonType.OK);
+            alert.setTitle("Недозаполненность");
             alert.showAndWait();
             return;
         }
