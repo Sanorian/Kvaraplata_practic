@@ -140,7 +140,7 @@ public class DataBaseConnect {
         try{
             Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Estate WHERE City='"+city+"' AND Street='"+street+"' AND Building='"+building+"' AND Apartment='"+apartment+"';");
+            ResultSet rs = statement.executeQuery("SELECT * FROM Estate WHERE City='"+city+"' AND Street='"+street+"' AND Building='"+building+"' AND Apartment="+apartment+";");
             Estate estate = null;
             while(rs.next()) {
                 estate = new Estate(rs.getInt("ID"), rs.getString("City"), rs.getString("Street"), rs.getString("Building"), rs.getInt("Apartment"), rs.getDouble("Hot_water"), rs.getDouble("Cold_water"), rs.getDouble("Estate_space"), rs.getInt("Number_of_registered_people"));
@@ -268,7 +268,7 @@ public class DataBaseConnect {
         try{
             Connection connection = DriverManager.getConnection("jdbc:sqlite:data.db");
             Statement statement = connection.createStatement();
-            statement.executeUpdate("UPDATE Estate SET City='"+city+"' AND Street='"+street+"' AND Building='"+building+"' AND Apartment='"+apartment+"' AND Hot_water="+hotWater+" AND Cold_water="+coldWater+" AND Estate_space="+estateSpace+" AND Number_of_registered_people="+numberOfRegisteredPeople+" WHERE ID="+ID+";");
+            statement.executeUpdate("UPDATE Estate SET City='"+city+"', Street='"+street+"', Building='"+building+"', Apartment='"+apartment+"', Hot_water="+hotWater+", Cold_water="+coldWater+", Estate_space="+estateSpace+", Number_of_registered_people="+numberOfRegisteredPeople+" WHERE ID="+ID+";");
             if (statement!= null) statement.close();
             if (connection!= null) connection.close();
         }catch(SQLException e){

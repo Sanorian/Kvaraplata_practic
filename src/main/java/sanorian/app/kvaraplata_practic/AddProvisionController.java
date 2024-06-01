@@ -46,11 +46,12 @@ public class AddProvisionController {
     protected void searchEstate(){
         Estate estate = DataBaseConnect.getEstateByAddress(city.getText(), street.getText(), building.getText(), apartment.getText());
         if (estate==null){
-            Alert alert = new Alert(Alert.AlertType.NONE, "Такая недвижимость отсутствует", ButtonType.OK);
-            alert.setTitle("Отсутствие недвижимость");
-            alert.showAndWait();
+            Alert alert1 = new Alert(Alert.AlertType.NONE, "Такой недвижимости нет", ButtonType.OK);
+            alert1.showAndWait();
             return;
         }
         estateID = estate.getId();
+        Alert alert = new Alert(Alert.AlertType.NONE, "Недвижимость найдена", ButtonType.OK);
+        alert.showAndWait();
     }
 }

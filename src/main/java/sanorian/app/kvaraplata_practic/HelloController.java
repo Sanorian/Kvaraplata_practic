@@ -126,7 +126,7 @@ public class HelloController {
             alert.showAndWait();
             return;
         }
-        Estate estate = DataBaseConnect.getEstateByAddress(cityName.getText(), streetName.getText(), buildingNumber.getText(), buildingNumber.getText());
+        Estate estate = DataBaseConnect.getEstateByAddress(cityName.getText(), streetName.getText(), buildingNumber.getText(), apartmentNumber.getText());
         if (estate==null){
             Alert alert1 = new Alert(Alert.AlertType.NONE, "Такой недвижимости нет", ButtonType.OK);
             alert1.showAndWait();
