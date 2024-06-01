@@ -3,7 +3,7 @@ module sanorian.app.kvaraplata_practic {
     requires javafx.fxml;
     requires java.sql;
     requires org.xerial.sqlitejdbc;
-    requires java.scripting;
+    requires exp4j;
 
 
     opens sanorian.app.kvaraplata_practic to javafx.fxml;

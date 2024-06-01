@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class HelloController {
@@ -67,8 +67,7 @@ public class HelloController {
                         assert service != null;
                         TextInputDialog tid = new TextInputDialog(service.getFormula());
                         tid.setTitle("Изменение формулы");
-                        tid.setContentText("В формуле используйте только h (hot water - горячая вода), c (cold water - холодная вода), s (space - площадь квартиры), p (people - количество людей, проживающих в квартире)");
-                        tid.setHeaderText("Измените формулу");
+                        tid.setHeaderText("В формуле используйте только h (hot water - горячая вода), c (cold water - холодная вода), s (space - площадь квартиры), p (people - количество людей, проживающих в квартире)");
                         tid.showAndWait().ifPresent(formula->{
                             DataBaseConnect.updateServiceFormula(service.getId(), formula);
                             reloadTable();
@@ -81,7 +80,7 @@ public class HelloController {
     }
     @FXML
     protected void searchProvision() {
-        if (cityName.getText().equals("") || streetName.getText().equals("") || buildingNumber.getText().equals("") || apartmentNumber.getText().equals("")){
+        if (cityName.getText().isEmpty() || streetName.getText().isEmpty() || buildingNumber.getText().isEmpty() || apartmentNumber.getText().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.NONE, "Введите полный адрес", ButtonType.OK);
             alert.showAndWait();
             return;
@@ -96,7 +95,7 @@ public class HelloController {
     @FXML
     protected void addService() throws IOException {
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(HelloApplication.class.getResource("addservice.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("addservice.fxml")));
         stage.setScene(new Scene(root));
         stage.setTitle("Добавить услугу");
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -105,7 +104,7 @@ public class HelloController {
     @FXML
     protected void addEstate() throws IOException {
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(HelloApplication.class.getResource("addestate.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("addestate.fxml")));
         stage.setScene(new Scene(root));
         stage.setTitle("Добавить недвижимость");
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -114,14 +113,86 @@ public class HelloController {
     @FXML
     protected void addProvision() throws IOException {
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(HelloApplication.class.getResource("addprovision.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("addprovision.fxml")));
         stage.setScene(new Scene(root));
         stage.setTitle("Добавить контракт");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
     }
-
+    @FXML
+    protected void changeEstate(){
+        if (cityName.getText().isEmpty() || streetName.getText().isEmpty() || buildingNumber.getText().isEmpty() || apartmentNumber.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.NONE, "Введите полный адрес", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+        Estate estate = DataBaseConnect.getEstateByAddress(cityName.getText(), streetName.getText(), buildingNumber.getText(), buildingNumber.getText());
+        if (estate==null){
+            Alert alert1 = new Alert(Alert.AlertType.NONE, "Такой недвижимости нет", ButtonType.OK);
+            alert1.showAndWait();
+            return;
+        }
+        AtomicReference<String> newCity = new AtomicReference<>(estate.getCity());
+        AtomicReference<String> newStreet = new AtomicReference<>(estate.getStreet());
+        AtomicReference<String> newBuilding = new AtomicReference<>(estate.getBuilding());
+        AtomicReference<String> newApartment = new AtomicReference<>(String.valueOf(estate.getApartment()));
+        AtomicReference<String> newHotWater = new AtomicReference<>(String.valueOf(estate.getHotWater()));
+        AtomicReference<String> newColdWater = new AtomicReference<>(String.valueOf(estate.getColdWater()));
+        AtomicReference<String> newEstateSpace = new AtomicReference<>(String.valueOf(estate.getEstateSpace()));
+        AtomicReference<String> newNumberOfRegistredPeople = new AtomicReference<>(String.valueOf(estate.getNumberOfRegistredPeople()));
+        TextInputDialog tid1 = new TextInputDialog(newCity.get());
+        tid1.setTitle("Изменение недвижимости");
+        tid1.setHeaderText("Город");
+        tid1.showAndWait().ifPresent(value->{
+            newCity.set(value);
+        });
+        TextInputDialog tid2 = new TextInputDialog(newStreet.get());
+        tid2.setTitle("Изменение недвижимости");
+        tid2.setHeaderText("Улица");
+        tid2.showAndWait().ifPresent(value->{
+            newStreet.set(value);
+        });
+        TextInputDialog tid3 = new TextInputDialog(newBuilding.get());
+        tid3.setTitle("Изменение недвижимости");
+        tid3.setHeaderText("Здание");
+        tid3.showAndWait().ifPresent(value->{
+            newBuilding.set(value);
+        });
+        TextInputDialog tid4 = new TextInputDialog(newApartment.get());
+        tid4.setTitle("Изменение недвижимости");
+        tid4.setHeaderText("Квартира");
+        tid4.showAndWait().ifPresent(value->{
+            newApartment.set(value);
+        });
+        TextInputDialog tid5 = new TextInputDialog(newHotWater.get());
+        tid5.setTitle("Изменение недвижимости");
+        tid5.setHeaderText("Горячая вода");
+        tid5.showAndWait().ifPresent(value->{
+            newHotWater.set(value);
+        });
+        TextInputDialog tid6 = new TextInputDialog(newColdWater.get());
+        tid6.setTitle("Изменение недвижимости");
+        tid6.setHeaderText("Холодная вода");
+        tid6.showAndWait().ifPresent(value->{
+            newColdWater.set(value);
+        });
+        TextInputDialog tid7 = new TextInputDialog(newEstateSpace.get());
+        tid7.setTitle("Изменение недвижимости");
+        tid7.setHeaderText("Площадь квартиры");
+        tid7.showAndWait().ifPresent(value->{
+            newEstateSpace.set(value);
+        });
+        TextInputDialog tid8 = new TextInputDialog(newNumberOfRegistredPeople.get());
+        tid8.setTitle("Изменение недвижимости");
+        tid8.setHeaderText("Количество зарегистрированных людей");
+        tid8.showAndWait().ifPresent(value->{
+            newNumberOfRegistredPeople.set(value);
+        });
+        DataBaseConnect.updateEstateByID(estate.getId(), newCity.get(), newStreet.get(), newBuilding.get(), newApartment.get(), newHotWater.get(), newColdWater.get(), newEstateSpace.get(), newNumberOfRegistredPeople.get());
+        reloadTable();
+    }
     private void reloadTable(){
+        table.getColumns().clear();
         ArrayList<Provision> provisions = DataBaseConnect.getProvisionByAddress(city, street, building, apartment);
         ArrayList<ProvisionTable> provisionTable = new ArrayList<>();
         AtomicReference<Double> cost = new AtomicReference<>(0.0);

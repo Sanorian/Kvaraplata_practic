@@ -57,7 +57,7 @@
                   <Button layoutX="14.0" layoutY="391.0" mnemonicParsing="false" onAction="#addEstate" text="Добавить недвижимость" />
                   <Button layoutX="14.0" layoutY="436.0" mnemonicParsing="false" onAction="#addService" text="Добавить услугу" />
                   <Button layoutX="14.0" layoutY="475.0" mnemonicParsing="false" onAction="#addProvision" text="Добавить контракт" />
-                  <Label id="allCost" layoutX="14.0" layoutY="281.0" prefHeight="36.0" prefWidth="176.0" text="Пока нет...">
+                  <Label fx:id="allCost" layoutX="14.0" layoutY="281.0" prefHeight="36.0" prefWidth="176.0" text="Пока нет...">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -67,6 +67,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <Button layoutX="14.0" layoutY="219.0" mnemonicParsing="false" onAction="#changeEstate" text="Изменить недвижимость" />
                </children>
         </AnchorPane>
         <ScrollPane prefHeight="-1.0" prefWidth="-1.0">

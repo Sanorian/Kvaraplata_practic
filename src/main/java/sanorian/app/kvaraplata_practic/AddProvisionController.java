@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -23,29 +24,12 @@ public class AddProvisionController {
     ListView<String> servicesList;
     @FXML
     void initialize(){
-        ArrayList<Service> services = DataBaseConnect.getServices();
-        ArrayList<String> servicesNames = new ArrayList<>();
-        assert services != null;
-        services.forEach(service -> {
-            servicesNames.add(service.getName());
-        });
-        servicesList = new ListView<>(FXCollections.observableArrayList(servicesNames));
+        servicesList.setItems(FXCollections.observableArrayList(DataBaseConnect.getServiceNames()));
     }
     @FXML
     protected void addProvision(){
-        final String[] selectedService = new String[1];
-        MultipleSelectionModel<String> lvSelModel = servicesList.getSelectionModel();
-        lvSelModel.selectedItemProperty().addListener(new ChangeListener<String>() {
-            public void changed(ObservableValue<? extends String> changed, String oldVal, String newVal) {
-                String selItems = "";
-                ObservableList<String> selected = servicesList.getSelectionModel().getSelectedItems();
-                for (int i = 0; i < selected.size(); i++) {
-                    selItems += "\n      " + selected.get(i);
-                }
-                selectedService[0] = selItems;
-            }
-        });
-        if (estateID==null || selectedService[0]==null){
+        String selectedItem = servicesList.getSelectionModel().getSelectedItem();
+        if (estateID==null || selectedItem==null){
             Alert alert = new Alert(Alert.AlertType.NONE, "Вы должны выбрать и недвижимость, и услугу", ButtonType.OK);
             alert.setTitle("Недовыбор");
             alert.showAndWait();
@@ -53,8 +37,10 @@ public class AddProvisionController {
         }
         ArrayList<Service> services = DataBaseConnect.getServices();
         assert services != null;
-        services.removeIf(s -> !s.getName().contains(selectedService[0]));
+        services.removeIf(s -> !s.getName().contains(selectedItem));
         DataBaseConnect.addProvision(services.get(0).getId(), estateID);
+        Stage stage = (Stage) city.getScene().getWindow();
+        stage.close();
     }
     @FXML
     protected void searchEstate(){

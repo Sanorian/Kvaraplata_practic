@@ -44,13 +44,13 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="261.0" VBox.vgrow="ALWAYS">
          <children>
             <Button layoutX="286.0" layoutY="308.0" mnemonicParsing="false" onAction="#addProvision" text="Добавить"/>
-            <ListView id="servicesList" layoutX="372.0" layoutY="14.0" prefHeight="282.0" prefWidth="229.0" />
+            <ListView fx:id="servicesList" layoutX="372.0" layoutY="14.0" prefHeight="282.0" prefWidth="229.0" />
             <Label layoutX="263.0" layoutY="27.0" prefHeight="156.0" prefWidth="115.0" text="Для добавления контракта  выберите недвижимость слева и услугу справа" wrapText="true" />
-            <TextField id="city" layoutX="34.0" layoutY="14.0" promptText="Город"/>
-            <TextField id="street" layoutX="34.0" layoutY="47.0" promptText="Улица"/>
+            <TextField fx:id="city" layoutX="34.0" layoutY="14.0" promptText="Город"/>
+            <TextField fx:id="street" layoutX="34.0" layoutY="47.0" promptText="Улица"/>
             <Button layoutX="34.0" layoutY="142.0" mnemonicParsing="false" text="Поиск" onAction="#searchEstate"/>
-            <TextField id="building" layoutX="34.0" layoutY="79.0" promptText="Здание"/>
-            <TextField id="apartment" layoutX="34.0" layoutY="111.0" promptText="Квартира"/>
+            <TextField fx:id="building" layoutX="34.0" layoutY="79.0" promptText="Здание"/>
+            <TextField fx:id="apartment" layoutX="34.0" layoutY="111.0" promptText="Квартира"/>
          </children>
     </AnchorPane>
   </children>
